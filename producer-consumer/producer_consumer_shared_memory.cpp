@@ -24,7 +24,7 @@ void *ptr;
 
 // =========================== Synchronization Objects ======================== //
 
-sem_t empty;  // Semaphore for empty slots in the buffer
+sem_t sem_empty;  // Semaphore for empty slots in the buffer
 sem_t full;   // Semaphore for full slots in the buffer
 pthread_mutex_t mutex_lock; // Mutex lock for buffer access
 
@@ -80,7 +80,7 @@ void cleanup_shared_memory() {
 
 int insert_item(buffer_item item) {
     // Wait if there are no empty slots available (decrement empty)
-    sem_wait(&empty);
+    sem_wait(&sem_empty);
     
     // Acquire the mutex lock to access the buffer
     pthread_mutex_lock(&mutex_lock);
@@ -123,7 +123,7 @@ int remove_item(buffer_item *item) {
     pthread_mutex_unlock(&mutex_lock);
 
     // Increment 'empty' to signal that a slot is now free
-    sem_post(&empty);
+    sem_post(&sem_empty);
 
     return 0; // success
 }
@@ -173,7 +173,7 @@ int main(int argc, char *argv[]) {
     srand((unsigned int)time(NULL));
 
     // Initialize semaphores
-    sem_init(&empty, 0, BUFFER_SIZE);
+    sem_init(&sem_empty, 0, BUFFER_SIZE);
     sem_init(&full, 0, 0);
     pthread_mutex_init(&mutex_lock, NULL);
 
@@ -205,7 +205,7 @@ int main(int argc, char *argv[]) {
     cleanup_shared_memory();
 
     pthread_mutex_destroy(&mutex_lock);
-    sem_destroy(&empty);
+    sem_destroy(&sem_empty);
     sem_destroy(&full);
 
     return 0;
