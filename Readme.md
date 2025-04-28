@@ -64,7 +64,8 @@ This executes FIFO and SJF scheduling using data from `datafile1.txt`. Metrics s
 ---
 
 ### Producer-Consumer with Shared Memory
-
+Video
+https://youtu.be/lCTqOw4wVdc
 To run the shared memory producer-consumer simulation:
 
 ```bash
