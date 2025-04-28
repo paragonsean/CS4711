@@ -1,0 +1,189 @@
+=== Running tests for sleep time: 0.00001 ===
+=== RUN tc=1, p=1, c=1, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 1, consumers: 1
+Total items produced: 0
+Total items consumed: 0
+Elapsed time: 6.4167e-05 seconds
+Throughput: 0 items/sec
+=== RUN tc=2, p=4, c=1, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 4, consumers: 1
+Total items produced: 123
+Total items consumed: 37
+Elapsed time: 0.000120666 seconds
+Throughput: 323206 items/sec
+=== RUN tc=3, p=16, c=1, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 16, consumers: 1
+Total items produced: 177
+Total items consumed: 1
+Elapsed time: 0.000231833 seconds
+Throughput: 4313.45 items/sec
+=== RUN tc=4, p=1, c=2, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 1, consumers: 2
+Total items produced: 0
+Total items consumed: 0
+Elapsed time: 4.6833e-05 seconds
+Throughput: 0 items/sec
+=== RUN tc=5, p=4, c=2, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 4, consumers: 2
+Total items produced: 1
+Total items consumed: 1
+Elapsed time: 7.3625e-05 seconds
+Throughput: 27164.7 items/sec
+=== RUN tc=6, p=16, c=2, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 16, consumers: 2
+Total items produced: 275
+Total items consumed: 5
+Elapsed time: 0.000313167 seconds
+Throughput: 15965.9 items/sec
+=== RUN tc=7, p=1, c=4, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 1, consumers: 4
+Total items produced: 0
+Total items consumed: 10
+Elapsed time: 6.7875e-05 seconds
+Throughput: 191529 items/sec
+=== RUN tc=8, p=4, c=4, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 4, consumers: 4
+Total items produced: 93
+Total items consumed: 46
+Elapsed time: 0.000144709 seconds
+Throughput: 324790 items/sec
+=== RUN tc=9, p=16, c=4, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 16, consumers: 4
+Total items produced: 456
+Total items consumed: 45
+Elapsed time: 0.000394625 seconds
+Throughput: 116566 items/sec
+=== RUN tc=10, p=1, c=16, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 1, consumers: 16
+Total items produced: 59
+Total items consumed: 357
+Elapsed time: 0.000279417 seconds
+Throughput: 1.29913e+06 items/sec
+=== RUN tc=11, p=4, c=16, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 4, consumers: 16
+Total items produced: 149
+Total items consumed: 234
+Elapsed time: 0.000326958 seconds
+Throughput: 718747 items/sec
+=== RUN tc=12, p=16, c=16, sleep=0.00001 ===
+Parameters -> sleep_time: 1e-05, producers: 16, consumers: 16
+Total items produced: 334
+Total items consumed: 186
+Elapsed time: 0.000426417 seconds
+Throughput: 443228 items/sec
+=== Running tests for sleep time: 0.00002 ===
+=== RUN tc=1, p=1, c=1, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 1, consumers: 1
+Total items produced: 0
+Total items consumed: 0
+Elapsed time: 5.4417e-05 seconds
+Throughput: 0 items/sec
+=== RUN tc=2, p=4, c=1, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 4, consumers: 1
+Total items produced: 46
+Total items consumed: 17
+Elapsed time: 0.000135542 seconds
+Throughput: 125422 items/sec
+=== RUN tc=3, p=16, c=1, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 16, consumers: 1
+Total items produced: 296
+Total items consumed: 24
+Elapsed time: 0.000320666 seconds
+Throughput: 74844.2 items/sec
+=== RUN tc=4, p=1, c=2, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 1, consumers: 2
+Total items produced: 39
+Total items consumed: 10
+Elapsed time: 7.2333e-05 seconds
+Throughput: 165899 items/sec
+=== RUN tc=5, p=4, c=2, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 4, consumers: 2
+Total items produced: 9
+Total items consumed: 16
+Elapsed time: 8.4125e-05 seconds
+Throughput: 202080 items/sec
+=== RUN tc=6, p=16, c=2, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 16, consumers: 2
+Total items produced: 284
+Total items consumed: 10
+Elapsed time: 0.000283958 seconds
+Throughput: 35216.5 items/sec
+=== RUN tc=7, p=1, c=4, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 1, consumers: 4
+Total items produced: 54
+Total items consumed: 118
+Elapsed time: 0.0001305 seconds
+Throughput: 950192 items/sec
+=== RUN tc=8, p=4, c=4, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 4, consumers: 4
+Total items produced: 65
+Total items consumed: 60
+Elapsed time: 0.00014275 seconds
+Throughput: 441331 items/sec
+=== RUN tc=9, p=16, c=4, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 16, consumers: 4
+Total items produced: 688
+Total items consumed: 73
+Elapsed time: 0.000504542 seconds
+Throughput: 148650 items/sec
+=== RUN tc=10, p=1, c=16, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 1, consumers: 16
+Total items produced: 26
+Total items consumed: 273
+Elapsed time: 0.000281667 seconds
+Throughput: 1.00118e+06 items/sec
+=== RUN tc=11, p=4, c=16, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 4, consumers: 16
+Total items produced: 222
+Total items consumed: 211
+Elapsed time: 0.000392208 seconds
+Throughput: 543079 items/sec
+=== RUN tc=12, p=16, c=16, sleep=0.00002 ===
+Parameters -> sleep_time: 2e-05, producers: 16, consumers: 16
+Total items produced: 531
+Total items consumed: 184
+Elapsed time: 0.000588917 seconds
+Throughput: 319230 items/sec
+=== Running tests for sleep time: 0.00003 ===
+=== RUN tc=1, p=1, c=1, sleep=0.00003 ===
+Parameters -> sleep_time: 3e-05, producers: 1, consumers: 1
+Total items produced: 26
+Total items consumed: 32
+Elapsed time: 6.8209e-05 seconds
+Throughput: 469146 items/sec
+=== RUN tc=2, p=4, c=1, sleep=0.00003 ===
+Parameters -> sleep_time: 3e-05, producers: 4, consumers: 1
+Total items produced: 88
+Total items consumed: 19
+Elapsed time: 0.000124958 seconds
+Throughput: 152051 items/sec
+=== RUN tc=3, p=16, c=1, sleep=0.00003 ===
+Parameters -> sleep_time: 3e-05, producers: 16, consumers: 1
+Total items produced: 427
+Total items consumed: 3
+Elapsed time: 0.000299084 seconds
+Throughput: 10030.6 items/sec
+=== RUN tc=4, p=1, c=2, sleep=0.00003 ===
+Parameters -> sleep_time: 3e-05, producers: 1, consumers: 2
+Total items produced: 61
+Total items consumed: 122
+Elapsed time: 7.8666e-05 seconds
+Throughput: 1.67798e+06 items/sec
+=== RUN tc=5, p=4, c=2, sleep=0.00003 ===
+Parameters -> sleep_time: 3e-05, producers: 4, consumers: 2
+Total items produced: 30
+Total items consumed: 23
+Elapsed time: 0.000105875 seconds
+Throughput: 217237 items/sec
+=== RUN tc=6, p=16, c=2, sleep=0.00003 ===
+Parameters -> sleep_time: 3e-05, producers: 16, consumers: 2
+Total items produced: 481
+Total items consumed: 35
+Elapsed time: 0.000370625 seconds
+Throughput: 94435.1 items/sec
+=== RUN tc=7, p=1, c=4, sleep=0.00003 ===
+Parameters -> sleep_time: 3e-05, producers: 1, consumers: 4
+Total items produced: 10
+Total items consumed: 104
+Elapsed time: 0.000125334 seconds
+Throughput: 853719 items/sec
