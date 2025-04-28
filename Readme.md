@@ -23,10 +23,10 @@ This repository contains two major simulations related to core operating system 
 ├── producer-consumer/              # Producer-consumer shared memory simulation
 │   ├── report                      # report with files
 │   ├── producer_consumer.cpp # optimized logic with pthreads
-│   ├── producer_consumer_shared_memory     # Compiled binary
 │   ├── producer_consumer_shared_memory.cpp# original code used in video
 │   ├── Readme.md                           # Producer-consumer-specific README
-│   └── test.sh            # testing script used to determine speed and throughput
+│   ├──test.sh            # testing script used to determine speed and throughput
+│   └── test2.sh            #additional testing script used to determine speed and throughput
 ```
 
 ---
