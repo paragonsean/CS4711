@@ -1,6 +1,8 @@
 Producer-Consumer with Shared Memory
 
 Overview
+Video
+https://youtu.be/lCTqOw4wVdc
 
 This program demonstrates a producer-consumer model where multiple producer and consumer threads interact with a shared memory buffer. The shared memory buffer is implemented using shm_open() and mmap() functions. Semaphores are used for synchronization to manage the empty and full slots in the buffer, and mutexes are used to ensure mutual exclusion when accessing the buffer.
 
