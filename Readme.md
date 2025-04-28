@@ -21,12 +21,12 @@ This repository contains two major simulations related to core operating system 
 │   └── cpu_scheduler               # Compiled output binary
 ├── producer_consumer.cpp           # Optional standalone version (if used earlier)
 ├── producer-consumer/              # Producer-consumer shared memory simulation
-│   ├── producer_consumer_results.txt       # Output log (optional)
-│   ├── producer_consumer_shared_memory.cpp # Complete logic with pthreads
+│   ├── report                      # report with files
+│   ├── producer_consumer.cpp # optimized logic with pthreads
 │   ├── producer_consumer_shared_memory     # Compiled binary
-│   ├── producer_consumer_shared_memory.dSYM# macOS debug symbols (if built with -g)
+│   ├── producer_consumer_shared_memory.cpp# original code used in video
 │   ├── Readme.md                           # Producer-consumer-specific README
-│   └── run_producer_consumer.sh            # Optional script to launch simulation
+│   └── test.sh            # testing script used to determine speed and throughput
 ```
 
 ---
