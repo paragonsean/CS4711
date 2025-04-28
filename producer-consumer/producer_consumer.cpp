@@ -15,7 +15,7 @@
 using namespace std;
 
 typedef int buffer_item;
-#define BUFFER_SIZE 64
+#define BUFFER_SIZE 5
 
 // Shared memory
 int shm_fd;
