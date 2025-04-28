@@ -1,48 +1,46 @@
 # Makefile for CPU Scheduler and Producer-Consumer Project
 
-# Compilers
-GXX = g++          # For CPU Scheduler
-CLANGXX = clang++  # For Producer-Consumer
+# — Compiler
+CXX := clang++               # You can switch to g++ if needed
 
-# Common flags
-CXXFLAGS = -std=c++17 -Wall -Wextra -O2
+# — Compilation Flags
+CXXFLAGS := -std=c++17 -Wall -Wextra -O3 -march=native -flto -pthread
 
-# Directories
-SCHEDULER_DIR = cpuscheduler
-PRODUCER_DIR = producer-consumer
+# — Directories and Files
+SCHEDULER_DIR := cpuscheduler
+PRODUCER_DIR  := producer-consumer
 
-# Sources and output binaries
-SCHEDULER_SRC = $(SCHEDULER_DIR)/cpu_scheduler.cpp
-SCHEDULER_BIN = $(SCHEDULER_DIR)/cpu_scheduler
+SCHEDULER_SRC := $(SCHEDULER_DIR)/cpu_scheduler.cpp
+SCHEDULER_BIN := $(SCHEDULER_DIR)/cpu_scheduler
 
-PRODUCER_SRC = $(PRODUCER_DIR)/producer_consumer_shared_memory.cpp
-PRODUCER_BIN = $(PRODUCER_DIR)/producer_consumer_shared_memory
+PRODUCER_SRC  := $(PRODUCER_DIR)/producer_consumer.cpp
+PRODUCER_BIN  := $(PRODUCER_DIR)/producer_consumer
 
-# Phony targets
+# — Phony Targets
 .PHONY: all clean run_scheduler run_producer
 
-# Default build target
+# — Default Target: Build everything
 all: $(SCHEDULER_BIN) $(PRODUCER_BIN)
 
-# Compile CPU Scheduler using g++
+# — Build CPU Scheduler
 $(SCHEDULER_BIN): $(SCHEDULER_SRC)
-	$(GXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Compile Producer-Consumer using clang++ with pthread
+# — Build Producer-Consumer
 $(PRODUCER_BIN): $(PRODUCER_SRC)
-	$(CLANGXX) $(CXXFLAGS) -pthread -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Run CPU Scheduler
+# — Run CPU Scheduler
 run_scheduler: $(SCHEDULER_BIN)
-	@echo "Running CPU Scheduler..."
+	@echo ">>> Running CPU Scheduler..."
 	cd $(SCHEDULER_DIR) && ./cpu_scheduler
 
-# Run Producer-Consumer
+# — Run Producer-Consumer
 run_producer: $(PRODUCER_BIN)
-	@echo "Running Producer-Consumer..."
-	cd $(PRODUCER_DIR) && ./producer_consumer_shared_memory
+	@echo ">>> Running Producer-Consumer..."
+	cd $(PRODUCER_DIR) && ./producer_consumer
 
-# Clean build outputs
+# — Clean Binaries
 clean:
-	@echo "Cleaning up binaries..."
+	@echo ">>> Cleaning up binaries..."
 	rm -f $(SCHEDULER_BIN) $(PRODUCER_BIN)
