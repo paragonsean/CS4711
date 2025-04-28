@@ -1,3 +1,26 @@
+/**************************************************************
+ * producer_consumer.cpp
+ * Sean Baker 04/26/2025
+ * sbake021@odu.edu
+ * Bounded-buffer (size 5) producer–consumer solution using:
+ *   - Pthreads (pthread_create) and optimizations including volatile and 
+     using memory pages to improve cache locality
+ *   - POSIX semaphores (sem_init, sem_wait, sem_post)
+ *   - A mutex lock for mutual exclusion
+ *
+ * Usage:
+ *    g++ -o producer_consumer producer_consumer.cpp -pthread -lrt
+ *    ./producer_consumer <sleep_time> <num_producers> <num_consumers>
+ *
+ * Example:
+ *    ./producer_consumer 10 1 1
+ *
+ * Explanation:
+ *   - Main creates <num_producers> producer threads
+ *   - Main creates <num_consumers> consumer threads
+ *   - Main sleeps for <sleep_time> seconds, then the program exits
+ *
+ **************************************************************/
 #include <iostream>
 #include <pthread.h>
 #include <semaphore.h>
