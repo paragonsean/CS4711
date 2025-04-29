@@ -1,3 +1,13 @@
+/*
+* ============================================
+ * About
+ * --------------------------------------------
+ * Caiden Petty
+ * Computer Science Student
+ * Old Dominion University
+ * cpett007@odu.edu
+ * ============================================
+ */
 #include <iostream>
 #include <vector>
 #include <queue>
