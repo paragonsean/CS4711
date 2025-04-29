@@ -8,7 +8,7 @@ This program simulates **CPU scheduling** using two major algorithms:
 It reads **500 processes** from an input file containing **arrival times** and **CPU burst times**, schedules them based on the chosen policy, and computes important performance metrics such as **waiting time**, **turnaround time**, **response time**, **CPU utilization**, and **throughput**.
 
 ---
-
+https://youtu.be/0kP-x2PfL1c
 ## 📂 Files
 
 | File | Purpose |
