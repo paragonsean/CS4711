@@ -3,7 +3,9 @@
 This repository contains two major simulations related to core operating system concepts:
 
 1. **CPU Scheduler** — Implements FIFO and SJF scheduling algorithms.  
+https://youtu.be/0kP-x2PfL1c
 2. **Producer-Consumer** — Solves the bounded buffer problem using POSIX threads, semaphores, and shared memory.
+https://youtu.be/lCTqOw4wVdc
 
 ---
 

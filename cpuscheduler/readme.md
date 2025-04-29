@@ -10,7 +10,7 @@ This project is a C++ simulation of CPU scheduling algorithms, focusing on **Fir
 ---
 
 ## 🚀 How It Works
-
+https://youtu.be/0kP-x2PfL1c
 The simulation reads a set of processes from a file, queues them based on their arrival times, and schedules them using FIFO and SJF algorithms in two separate runs. Each run tracks and outputs critical performance metrics.
 
 ### ✅ Features
