@@ -165,11 +165,11 @@ Average Response Time: 12.3
 
 ## ✍️ Author
 
-**Sean Baker**  
+
+**Caiden Petty**  
 Computer Science Student  
 Old Dominion University  
-📧 [sbake021@odu.edu](mailto:sbake021@odu.edu)
-
+📧 [cpett007@odu.edu](mailto:cpett007@odu.edu)
 ---
 
 
