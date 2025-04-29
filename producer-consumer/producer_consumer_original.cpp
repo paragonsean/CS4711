@@ -184,17 +184,15 @@ void *consumer(void *param) {
 // =========================== main() ======================================== //
 
 int main(int argc, char *argv[]) {
-    // if (argc != 4) {
-    //     cerr << "Usage: " << argv[0] << " <sleep_time> <num_producers> <num_consumers>\n";
-    //     return 1;
-    // }
-    //
-    // int sleep_time = atoi(argv[1]);
-    // int num_producers = atoi(argv[2]);
-    // int num_consumers = atoi(argv[3]);
-    int sleep_time = 5;
-    int num_producers = 2;
-    int num_consumers = 2;
+    if (argc != 4) {
+        cerr << "Usage: " << argv[0] << " <sleep_time> <num_producers> <num_consumers>\n";
+        return 1;
+    }
+
+    int sleep_time = atoi(argv[1]);
+    int num_producers = atoi(argv[2]);
+    int num_consumers = atoi(argv[3]);
+
     srand((unsigned int)time(NULL));
 
     // Initialize semaphores
