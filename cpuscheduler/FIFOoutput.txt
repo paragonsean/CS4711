@@ -1,0 +1,7 @@
+FIFO Scheduling Results:
+Total elapsed time: 14744
+Throughput: 21.116 burst units/process
+CPU Utilization: 71.6088%
+Average Waiting Time: 17.884
+Average Turnaround Time: 39
+Average Response Time: 17.884

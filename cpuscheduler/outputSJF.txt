@@ -1,0 +1,10 @@
+Select Scheduling Algorithm (default FIFO):
+0 - FIFO (First In First Out)
+1 - SJF (Shortest Job First)
+Enter your choice (press Enter for FIFO): 1
+Total elapsed time: 14744
+Throughput: 21.116 burst units/process
+CPU Utilization: 71.6088%
+Average Waiting Time: 14.24
+Average Turnaround Time: 35.356
+Average Response Time: 14.24
