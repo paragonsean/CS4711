@@ -1,0 +1,8 @@
+(base) roto@ls CS4711 % make run_producer
+>>> Running Producer-Consumer...
+cd producer-consumer && ./producer_consumer 10 1 1
+Parameters -> sleep_time: 10, producers: 1, consumers: 1
+Total items produced: 18867620
+Total items consumed: 18884180
+Elapsed time: 10.005 seconds
+Throughput: 1.88747e+06 items/sec
