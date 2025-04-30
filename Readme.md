@@ -168,8 +168,7 @@ It demonstrates **real-world OS principles** such as scheduling, synchronization
 Computer Science Student  
 Old Dominion University  
 📧 [sbake021@odu.edu](mailto:sbake021@odu.edu)
-
-
+---
 **Caiden Petty**  
 Computer Science Student  
 Old Dominion University  
