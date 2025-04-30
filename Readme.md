@@ -83,16 +83,9 @@ This program loads `datafile1.txt`, simulates the scheduling logic, and prints:
 
 ---
 
-
-### Producer-Consumer with Shared Memory
-Video
-https://youtu.be/lCTqOw4wVdc
-To run the shared memory producer-consumer simulation:
-=======
 ### 🔄 Producer-Consumer with Shared Memory
 
 To run the producer-consumer simulation:
-
 
 ```bash
 make run_producer
@@ -175,7 +168,10 @@ It demonstrates **real-world OS principles** such as scheduling, synchronization
 Computer Science Student  
 Old Dominion University  
 📧 [sbake021@odu.edu](mailto:sbake021@odu.edu)
-
+**Caiden Petty**  
+Computer Science Student  
+Old Dominion University  
+📧 [cpett007@odu.edu](mailto:cpett007@odu.edu)
 ---
 
 ## 📜 License
