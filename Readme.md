@@ -162,12 +162,14 @@ It demonstrates **real-world OS principles** such as scheduling, synchronization
 
 ---
 
-## ✍️ Author
+## ✍️ Authors
 
 **Sean Baker**  
 Computer Science Student  
 Old Dominion University  
 📧 [sbake021@odu.edu](mailto:sbake021@odu.edu)
+
+
 **Caiden Petty**  
 Computer Science Student  
 Old Dominion University  
