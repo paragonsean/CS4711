@@ -1,39 +1,53 @@
-# Operating Systems Project Suite
+# 🖥️ Operating Systems Project Suite
 
-This repository contains two major simulations related to core operating system concepts:
+This repository contains two major simulations demonstrating fundamental operating system concepts:
 
-1. **CPU Scheduler** — Implements FIFO and SJF scheduling algorithms.  
-2. **Producer-Consumer** — Solves the bounded buffer problem using POSIX threads, semaphores, and shared memory.
+1. **CPU Scheduler** — Simulates FIFO and SJF scheduling algorithms  
+   📺 [Watch Demo](https://youtu.be/0kP-x2PfL1c)
+
+2. **Producer-Consumer** — Solves the bounded buffer problem using POSIX threads, semaphores, and shared memory  
+   📺 [Watch Demo](https://youtu.be/lCTqOw4wVdc)
 
 ---
 
-## Directory Structure
+## 📂 Directory Structure
 
 ```
 .
 ├── Makefile                         # Unified Makefile to build both projects
-├── cpuscheduler/                   # CPU scheduling simulation
-│   ├── a.out
-│   ├── cpu_scheduler.cpp           # Main simulation logic
-│   ├── cpu_scheduler.sh            # Shell script (optional)
-│   ├── datafile1.txt               # Input data: arrival and burst times
-│   ├── readme.md                   # Scheduler-specific documentation
-│   └── cpu_scheduler               # Compiled output binary
-├── producer_consumer.cpp           # Optional standalone version (if used earlier)
-├── producer-consumer/              # Producer-consumer shared memory simulation
-│   ├── report                      # report with files
-│   ├── producer_consumer.cpp # optimized logic with pthreads
-│   ├── producer_consumer_shared_memory.cpp# original code used in video
-│   ├── Readme.md                           # Producer-consumer-specific README
-│   ├──test.sh            # testing script used to determine speed and throughput
-│   └── test2.sh            #additional testing script used to determine speed and throughput
+├── Readme.md                        # Root README (this file)
+├── cpuscheduler/                    # CPU Scheduling simulation
+│   ├── FIFOoutput.txt               # Example FIFO output
+│   ├── cpu_scheduler.cpp            # Basic scheduler (FIFO & SJF)
+│   ├── cpu_scheduler_advanced.cpp   # Advanced scheduler using Visitor Pattern
+│   ├── datafile1.txt                # Input: arrival and burst times
+│   ├── outputSJF.txt                # Example SJF output
+│   └── readme.md                    # CPU Scheduler-specific documentation
+└── producer-consumer/               # Producer-Consumer shared memory simulation
+    ├── Readme.md                    # Producer-Consumer-specific documentation
+    ├── producer_consumer.cpp        # Optimized version with pthreads
+    ├── producer_consumer_original.cpp # Original baseline implementation
+    ├── report/                      # Performance analysis and visualizations
+    │   ├── README.md
+    │   ├── Untitled.ipynb
+    │   ├── Untitled1.ipynb
+    │   ├── output_2_0.png
+    │   ├── output_2_1.png
+    │   ├── output_2_2.png
+    │   ├── output_5_0.png
+    │   ├── results_timing_all.csv
+    │   ├── results_timing_all_fast.csv
+    │   └── results_timing_allnormal.csv
+    ├── test.sh                      # Test script: speed & throughput
+    ├── test2.sh                     # Alternate configuration test
+    └── test3.sh                     # Additional benchmark tests
 ```
 
 ---
 
-## Build Instructions
+## ⚙️ Build Instructions
 
-To build both simulations from the root directory, use the Makefile:
+To build both projects from the root directory, run:
 
 ```bash
 make
@@ -41,38 +55,50 @@ make
 
 This will:
 
-- Compile `cpu_scheduler.cpp` using `g++`
-- Compile `producer_consumer_shared_memory.cpp` using `clang++ -pthread`  
-  Both use the C++17 standard and optimization flags.
+- Compile `cpuscheduler/cpu_scheduler.cpp` using `g++`
+- Compile `producer-consumer/producer_consumer.cpp` using `clang++ -pthread`
+
+Both use the **C++17** standard and optimization flags for performance.
 
 ---
 
-## Running the Simulations
+## 🚀 Running the Simulations
 
-### CPU Scheduler
+### 🧠 CPU Scheduler
 
-To run the CPU scheduling simulation:
+To run the CPU scheduler (FIFO and SJF):
 
 ```bash
 make run_scheduler
 ```
 
-This executes FIFO and SJF scheduling using data from `datafile1.txt`. Metrics such as turnaround time, response time, and throughput are printed to the console.
+This program loads `datafile1.txt`, simulates the scheduling logic, and prints:
 
-> Ensure that `datafile1.txt` exists and contains 500 lines of arrival time and CPU burst pairs.
+- Turnaround Time
+- Waiting Time
+- Response Time
+- Throughput
+
+> Ensure `datafile1.txt` contains **500 lines** of arrival and burst time pairs.
 
 ---
 
+<<<<<<< HEAD
 ### Producer-Consumer with Shared Memory
 Video
 https://youtu.be/lCTqOw4wVdc
 To run the shared memory producer-consumer simulation:
+=======
+### 🔄 Producer-Consumer with Shared Memory
+
+To run the producer-consumer simulation:
+>>>>>>> 0e436c87f17977ea61bd544014b89ea82fea1dc8
 
 ```bash
 make run_producer
 ```
 
-Alternatively, run the binary directly:
+Or run manually:
 
 ```bash
 ./producer-consumer/producer_consumer_shared_memory <sleep_time> <num_producers> <num_consumers>
@@ -84,11 +110,15 @@ Alternatively, run the binary directly:
 ./producer-consumer/producer_consumer_shared_memory 10 2 2
 ```
 
-This starts 2 producers and 2 consumers, runs for 10 seconds, and uses POSIX shared memory for buffer coordination.
+This runs for 10 seconds with 2 producers and 2 consumers using:
+
+- Shared memory (`shm_open`, `mmap`)
+- Semaphores (`sem_wait`, `sem_post`)
+- Mutexes for synchronization
 
 ---
 
-## Cleaning Up
+## 🧹 Cleaning Up
 
 To remove compiled binaries:
 
@@ -96,47 +126,60 @@ To remove compiled binaries:
 make clean
 ```
 
-This deletes:
+Removes:
 
 - `cpuscheduler/cpu_scheduler`
 - `producer-consumer/producer_consumer_shared_memory`
 
 ---
 
-## Concepts Covered
+## 📘 Concepts Covered
 
-### CPU Scheduler
+### 🧠 CPU Scheduler
 
-- First-In-First-Out (FIFO) Scheduling  
-- Shortest Job First (SJF) Scheduling  
-- Process metrics: waiting time, turnaround time, response time  
-- CPU utilization and throughput tracking
+- **FIFO (First-In-First-Out)** Scheduling
+- **SJF (Shortest Job First)** Scheduling
+- Process metrics:
+  - Waiting Time
+  - Turnaround Time
+  - Response Time
+- CPU Utilization and Throughput Measurement
 
-### Producer-Consumer
+### 🔄 Producer-Consumer
 
-- Multi-threading with POSIX `pthread`  
-- Semaphores and mutex locks for thread synchronization  
-- Circular buffer implementation in shared memory  
-- Inter-process communication using `shm_open`, `mmap`, `ftruncate`
+- POSIX **multi-threading** using `pthread`
+- Thread synchronization using **semaphores** and **mutex locks**
+- **Circular buffer** implementation in shared memory
+- Inter-process communication via:
+  - `shm_open`
+  - `mmap`
+  - `ftruncate`
 
 ---
 
-## Educational Use
+## 🎓 Educational Context
 
-This project was developed for **CS471 – Operating Systems** at **Old Dominion University** in **Spring 2025**. It demonstrates core principles of process scheduling and inter-process/thread communication.
+This project was developed as part of:
+
+**CS471 – Operating Systems**  
+**Old Dominion University**  
+**Spring 2025**
+
+It demonstrates **real-world OS principles** such as scheduling, synchronization, inter-process communication, and concurrency management.
 
 ---
 
-## Author
+## ✍️ Author
 
 **Sean Baker**  
 Computer Science Student  
 Old Dominion University  
-Email: [sbake021@odu.edu](mailto:sbake021@odu.edu)
+📧 [sbake021@odu.edu](mailto:sbake021@odu.edu)
 
 ---
 
-## License
+## 📜 License
 
-This project is provided for academic and educational use.
+This project is intended for **academic and educational use only**.
 
+---

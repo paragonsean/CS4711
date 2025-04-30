@@ -1,5 +1,5 @@
 /*
- * ============================================
+* ============================================
  * About
  * --------------------------------------------
  * Caiden Petty
@@ -8,7 +8,6 @@
  * cpett007@odu.edu
  * ============================================
  */
-
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -17,8 +16,6 @@
 #include <fstream>
 #include <sstream>
 #include <deque>
-#include <memory>
-#include <functional>
 
 using namespace std;
 
@@ -28,11 +25,11 @@ struct Process {
     int pid;
     double arrivalTime;
     double burstTime;
-    double startTime = -1;
-    double finishTime = 0;
-    double waitingTime = 0;
-    double turnaroundTime = 0;
-    double responseTime = -1;
+    int startTime = -1;
+    int finishTime = 0;
+    int waitingTime = 0;
+    int turnaroundTime = 0;
+    int responseTime = -1;
 };
 
 struct Stats {
@@ -54,66 +51,55 @@ public:
 class Dispatcher {
 public:
     priority_queue<Process, vector<Process>, function<bool(Process, Process)>> jobQueue;
-    deque<unique_ptr<Process>> arrivalQueue;
-    deque<unique_ptr<Process>> readyQueue;
+    deque<Process*> arrivalQueue;
+    deque<Process*> readyQueue;
     vector<Process> terminated;
 
-    Dispatcher() : jobQueue([](Process a, Process b) {
-        return a.arrivalTime > b.arrivalTime;
-    }) {}
+    Dispatcher()
+        : jobQueue([](Process a, Process b) { return a.arrivalTime > b.arrivalTime; }) {}
 
     vector<Process> loadProcesses(const string& filename) {
         vector<Process> processes;
         ifstream file(filename);
         string line;
-        getline(file, line);  // Skip header
+        getline(file, line);
 
         int pid = 0;
         while (getline(file, line) && processes.size() < NUM_PROCESSES) {
             istringstream iss(line);
             double arrival, burst;
             if (iss >> arrival >> burst) {
-                processes.push_back({pid++, arrival, burst});
+                Process p;
+                p.pid = pid++;
+                p.arrivalTime = arrival;
+                p.burstTime = burst;
+                jobQueue.push(p);
+                processes.push_back(p);
             }
         }
         return processes;
     }
 
-    void loadIntoJobQueue(const vector<Process>& processes) {
-        while (!jobQueue.empty()) jobQueue.pop();
-        for (const auto& p : processes) {
-            jobQueue.push(p);
-        }
-    }
-
     void moveArrivedProcesses(double currentTime) {
         while (!jobQueue.empty() && jobQueue.top().arrivalTime <= currentTime) {
-            auto p = make_unique<Process>(jobQueue.top());
-            readyQueue.push_back(move(p));
-            arrivalQueue.push_back(make_unique<Process>(jobQueue.top()));
+            Process* p = new Process(jobQueue.top());
+            readyQueue.push_back(p);
+            arrivalQueue.push_back(p);
             jobQueue.pop();
         }
     }
 
-    void executeProcess(unique_ptr<Process>& p, double& currentTime) {
-        if (currentTime < p->arrivalTime)
-            currentTime = p->arrivalTime;
-
-        p->startTime = currentTime;
-        p->responseTime = currentTime - p->arrivalTime;
-        currentTime += p->burstTime;
-        p->finishTime = currentTime;
-        p->turnaroundTime = p->finishTime - p->arrivalTime;
-        p->waitingTime = p->turnaroundTime - p->burstTime;
-
-        terminated.push_back(*p);
-    }
-
     void resetState() {
-        readyQueue.clear();
-        arrivalQueue.clear();
-        terminated.clear();
+        while (!readyQueue.empty()) {
+            delete readyQueue.front();
+            readyQueue.pop_front();
+        }
+        while (!arrivalQueue.empty()) {
+            delete arrivalQueue.front();
+            arrivalQueue.pop_front();
+        }
         while (!jobQueue.empty()) jobQueue.pop();
+        terminated.clear();
     }
 
     void accept(SchedulerVisitor& scheduler) {
@@ -134,9 +120,21 @@ public:
                 continue;
             }
 
-            auto p = move(dispatcher.readyQueue.front());
+            Process* p = dispatcher.readyQueue.front();
             dispatcher.readyQueue.pop_front();
-            dispatcher.executeProcess(p, currentTime);
+
+            if (currentTime < p->arrivalTime)
+                currentTime = p->arrivalTime;
+
+            p->startTime = currentTime;
+            p->responseTime = p->startTime - p->arrivalTime;
+            currentTime += p->burstTime;
+            p->finishTime = currentTime;
+            p->turnaroundTime = p->finishTime - p->arrivalTime;
+            p->waitingTime = p->turnaroundTime - p->burstTime;
+
+            dispatcher.terminated.push_back(*p);
+            delete p;
         }
     }
 };
@@ -155,21 +153,31 @@ public:
             }
 
             auto shortestJob = min_element(dispatcher.readyQueue.begin(), dispatcher.readyQueue.end(),
-                [](const unique_ptr<Process>& a, const unique_ptr<Process>& b) {
-                    return a->burstTime < b->burstTime;
-                });
+                [](Process* a, Process* b) { return a->burstTime < b->burstTime; });
 
-            auto p = move(*shortestJob);
+            Process* p = *shortestJob;
             dispatcher.readyQueue.erase(shortestJob);
-            dispatcher.executeProcess(p, currentTime);
+
+            if (currentTime < p->arrivalTime)
+                currentTime = p->arrivalTime;
+
+            p->startTime = currentTime;
+            p->responseTime = p->startTime - p->arrivalTime;
+            currentTime += p->burstTime;
+            p->finishTime = currentTime;
+            p->turnaroundTime = p->finishTime - p->arrivalTime;
+            p->waitingTime = p->turnaroundTime - p->burstTime;
+
+            dispatcher.terminated.push_back(*p);
+            delete p;
         }
     }
 };
 
-void calculateStats(const Dispatcher& dispatcher, Stats& s) {
+void calculateStats(Dispatcher& dispatcher, Stats& s) {
     double totalTime = 0, sumBurst = 0, sumWait = 0, sumTurnaround = 0, sumResponse = 0;
 
-    for (const auto& p : dispatcher.terminated) {
+    for (const Process &p : dispatcher.terminated) {
         if (p.finishTime > totalTime)
             totalTime = p.finishTime;
         sumBurst += p.burstTime;
@@ -179,46 +187,46 @@ void calculateStats(const Dispatcher& dispatcher, Stats& s) {
     }
 
     s.elapsedTime = totalTime;
-    s.throughput = NUM_PROCESSES / totalTime;
+    s.throughput = sumBurst / NUM_PROCESSES;
     s.cpuUtilization = (sumBurst / totalTime) * 100;
     s.avgWaitingTime = sumWait / NUM_PROCESSES;
     s.avgTurnaroundTime = sumTurnaround / NUM_PROCESSES;
     s.avgResponseTime = sumResponse / NUM_PROCESSES;
 }
 
-void displayStats(const string& name, const Stats& s) {
-    cout << "\n" << name << " Scheduling Results:\n";
-    cout << "Total elapsed time: " << s.elapsedTime << endl;
-    cout << "Throughput: " << s.throughput << " processes/unit time" << endl;
-    cout << "CPU Utilization: " << s.cpuUtilization << "%" << endl;
-    cout << "Average Waiting Time: " << s.avgWaitingTime << endl;
-    cout << "Average Turnaround Time: " << s.avgTurnaroundTime << endl;
-    cout << "Average Response Time: " << s.avgResponseTime << endl;
-}
-
 int main() {
     Stats stats;
     Dispatcher dispatcher;
 
-    auto originalProcesses = dispatcher.loadProcesses("/Users/roto/CLionProjects/CS4711/cpuscheduler/datafile1.txt");
-
-    // FIFO
     cout << "Running FIFO Scheduling...\n";
-    dispatcher.loadIntoJobQueue(originalProcesses);
+    vector<Process> processes = dispatcher.loadProcesses("/Users/roto/CLionProjects/CS4711/cpuscheduler/datafile1.txt");
     FCFSScheduler fifoScheduler;
     dispatcher.accept(fifoScheduler);
     calculateStats(dispatcher, stats);
-    displayStats("FIFO", stats);
+
+    cout << "\nFIFO Scheduling Results:\n";
+    cout << "Total elapsed time: " << stats.elapsedTime << endl;
+    cout << "Throughput: " << stats.throughput << " burst units/process" << endl;
+    cout << "CPU Utilization: " << stats.cpuUtilization << "%" << endl;
+    cout << "Average Waiting Time: " << stats.avgWaitingTime << endl;
+    cout << "Average Turnaround Time: " << stats.avgTurnaroundTime << endl;
+    cout << "Average Response Time: " << stats.avgResponseTime << endl;
 
     dispatcher.resetState();
 
-    // SJF
     cout << "\nRunning SJF Scheduling...\n";
-    dispatcher.loadIntoJobQueue(originalProcesses);
+    processes = dispatcher.loadProcesses("/Users/roto/CLionProjects/CS4711/cpuscheduler/datafile1.txt");
     SJFScheduler sjfScheduler;
     dispatcher.accept(sjfScheduler);
     calculateStats(dispatcher, stats);
-    displayStats("SJF", stats);
+
+    cout << "\nSJF Scheduling Results:\n";
+    cout << "Total elapsed time: " << stats.elapsedTime << endl;
+    cout << "Throughput: " << stats.throughput << " burst units/process" << endl;
+    cout << "CPU Utilization: " << stats.cpuUtilization << "%" << endl;
+    cout << "Average Waiting Time: " << stats.avgWaitingTime << endl;
+    cout << "Average Turnaround Time: " << stats.avgTurnaroundTime << endl;
+    cout << "Average Response Time: " << stats.avgResponseTime << endl;
 
     return 0;
 }
