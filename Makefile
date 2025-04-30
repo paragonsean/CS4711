@@ -38,7 +38,7 @@ run_scheduler: $(SCHEDULER_BIN)
 # — Run Producer-Consumer
 run_producer: $(PRODUCER_BIN)
 	@echo ">>> Running Producer-Consumer..."
-	cd $(PRODUCER_DIR) && ./producer_consumer
+	cd $(PRODUCER_DIR) && ./producer_consumer 10 1 1
 
 # — Clean Binaries
 clean:
