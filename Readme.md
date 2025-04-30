@@ -83,7 +83,7 @@ This program loads `datafile1.txt`, simulates the scheduling logic, and prints:
 
 ---
 
-<<<<<<< HEAD
+
 ### Producer-Consumer with Shared Memory
 Video
 https://youtu.be/lCTqOw4wVdc
@@ -92,7 +92,7 @@ To run the shared memory producer-consumer simulation:
 ### 🔄 Producer-Consumer with Shared Memory
 
 To run the producer-consumer simulation:
->>>>>>> 0e436c87f17977ea61bd544014b89ea82fea1dc8
+
 
 ```bash
 make run_producer
